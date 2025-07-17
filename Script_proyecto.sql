@@ -307,3 +307,29 @@ INNER JOIN EMPLEADO E ON V.id_empleado = E.id_empleado
 INNER JOIN DETALLE_VENTA D ON V.id_venta = D.id_venta
 INNER JOIN PRODUCTO P ON D.id_producto = P.id_producto;
 GO
+
+-- Creación de trigger para actualizar monto total en la tabla VENTA
+CREATE TRIGGER tr_actualizar_total_venta
+ON DETALLE_VENTA
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT 1 FROM INSERTED)
+	BEGIN
+		UPDATE VENTA
+		SET total= (SELECT ISNULL(SUM(subtotal),0) FROM DETALLE_VENTA WHERE id_venta = V.id_venta)
+		FROM VENTA V
+		INNER JOIN (SELECT DISTINCT id_venta FROM INSERTED)I ON V.id_venta = I.id_venta;
+	END;
+
+	IF EXISTS(SELECT 1 FROM DELETED)
+	BEGIN
+		UPDATE VENTA
+		SET total= (SELECT ISNULL(SUM(subtotal),0) FROM DETALLE_VENTA WHERE id_venta = V.id_venta)
+		FROM VENTA V
+		INNER JOIN (SELECT DISTINCT id_venta FROM DELETED)I ON V.id_venta = I.id_venta;
+	END;
+
+END; 
