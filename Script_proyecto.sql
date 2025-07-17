@@ -1,4 +1,3 @@
-USE MarketPERU
 -- VERIFICAMOS SI LA BASE DE DATOS EXISTE PARA ELIMINARLA   
 IF EXISTS (SELECT name FROM sys.databases WHERE name = 'SISTEMA_VENTAS')
 BEGIN
@@ -452,6 +451,9 @@ EXEC pr_insertardetalle_venta 28, 1, 3, 2.50;
 EXEC pr_insertardetalle_venta 28, 2, 2, 1.80;
 EXEC pr_insertardetalle_venta 29, 1, 4, 2.50;
 EXEC pr_insertardetalle_venta 29, 2, 2, 1.80;
+
+-- Verificamos nuestra vista 
+SELECT * FROM vw_ventas_general;
 
 
 	
