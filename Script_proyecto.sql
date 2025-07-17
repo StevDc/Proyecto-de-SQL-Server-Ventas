@@ -1,4 +1,4 @@
-
+USE MarketPERU
 -- VERIFICAMOS SI LA BASE DE DATOS EXISTE PARA ELIMINARLA   
 IF EXISTS (SELECT name FROM sys.databases WHERE name = 'SISTEMA_VENTAS')
 BEGIN
@@ -333,3 +333,125 @@ BEGIN
 	END;
 
 END; 
+GO
+
+-- INGRESAMOS NUESTRA DATA UTILIZANDO LOS PROCEDURE CREADOS
+
+EXEC pr_insertarcategoria 'Bebidas';
+EXEC pr_insertarcategoria 'Snacks';
+
+EXEC pr_insertarproducto 'Coca Cola 500ml', 2.50, 50, 1;
+EXEC pr_insertarproducto 'Papas Fritas Lays', 1.80, 30, 2;
+
+EXEC pr_insertarciudad 'Lima';
+EXEC pr_insertarciudad 'Arequipa';
+
+EXEC pr_insertarcliente 'Carlos Ramos', 'carlos.ramos@gmail.com', 1, '2025-07-01';
+EXEC pr_insertarcliente 'María Pérez', 'maria.perez@gmail.com', 2, '2025-07-05';
+EXEC pr_insertarcliente 'Luis Fernández', 'luis.fernandez@gmail.com', 1, '2025-07-08';
+EXEC pr_insertarcliente 'Ana Castillo', 'ana.castillo@gmail.com', 2, '2025-07-09';
+
+EXEC pr_insertarsucursal 'Sucursal Lima Centro', 1;
+EXEC pr_insertarsucursal 'Sucursal Arequipa', 2;
+
+EXEC pr_insertarcargo 'Vendedor';
+EXEC pr_insertarcargo 'Supervisor';
+
+EXEC pr_insertarempleado 'Juan Torres', 1, 1, 1, '999888777';
+EXEC pr_insertarempleado 'Lucía Gómez', 2, 2, 2, '998877665';
+
+EXEC pr_insertarmetodo_pago 'Efectivo';
+EXEC pr_insertarmetodo_pago 'Tarjeta';
+
+EXEC pr_insertarventa 1, 1, 1, '2025-07-01 10:00:00';
+EXEC pr_insertarventa 1, 2, 2, '2025-07-02 11:00:00';
+EXEC pr_insertarventa 1, 1, 1, '2025-07-03 12:00:00';
+EXEC pr_insertarventa 1, 2, 2, '2025-07-04 13:00:00';
+EXEC pr_insertarventa 1, 1, 1, '2025-07-05 14:00:00';
+EXEC pr_insertarventa 1, 2, 2, '2025-07-06 15:00:00';
+EXEC pr_insertarventa 1, 1, 1, '2025-07-07 16:00:00';
+EXEC pr_insertarventa 1, 2, 2, '2025-07-08 17:00:00';
+EXEC pr_insertarventa 1, 1, 1, '2025-07-09 18:00:00';
+EXEC pr_insertarventa 1, 2, 2, '2025-07-10 19:00:00';
+EXEC pr_insertarventa 1, 1, 1, '2025-07-11 20:00:00';
+EXEC pr_insertarventa 1, 2, 2, '2025-07-12 21:00:00';
+EXEC pr_insertarventa 2, 1, 1, '2025-07-01 10:30:00';
+EXEC pr_insertarventa 2, 2, 2, '2025-07-02 11:30:00';
+EXEC pr_insertarventa 2, 1, 1, '2025-07-03 12:30:00';
+EXEC pr_insertarventa 2, 2, 2, '2025-07-04 13:30:00';
+EXEC pr_insertarventa 2, 1, 1, '2025-07-05 14:30:00';
+EXEC pr_insertarventa 2, 2, 2, '2025-07-06 15:30:00';
+EXEC pr_insertarventa 2, 1, 1, '2025-07-07 16:30:00';
+EXEC pr_insertarventa 2, 2, 2, '2025-07-08 17:30:00';
+EXEC pr_insertarventa 2, 1, 1, '2025-07-09 18:30:00';
+EXEC pr_insertarventa 3, 1, 1, '2025-07-01 09:00:00';
+EXEC pr_insertarventa 3, 2, 2, '2025-07-02 10:00:00';
+EXEC pr_insertarventa 3, 1, 1, '2025-07-03 11:00:00';
+EXEC pr_insertarventa 3, 2, 2, '2025-07-04 12:00:00';
+EXEC pr_insertarventa 3, 1, 1, '2025-07-05 13:00:00';
+EXEC pr_insertarventa 4, 1, 1, '2025-07-01 08:00:00';
+EXEC pr_insertarventa 4, 2, 2, '2025-07-02 09:00:00';
+EXEC pr_insertarventa 4, 1, 1, '2025-07-03 10:00:00';
+
+EXEC pr_insertardetalle_venta 1, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 1, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 2, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 2, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 3, 1, 1, 2.50;
+EXEC pr_insertardetalle_venta 3, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 3, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 4, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 4, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 5, 1, 4, 2.50;
+EXEC pr_insertardetalle_venta 5, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 6, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 6, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 7, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 7, 2, 3, 1.80;
+EXEC pr_insertardetalle_venta 8, 1, 5, 2.50;
+EXEC pr_insertardetalle_venta 8, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 9, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 9, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 10, 1, 4, 2.50;
+EXEC pr_insertardetalle_venta 10, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 11, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 11, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 12, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 12, 2, 3, 1.80;
+EXEC pr_insertardetalle_venta 13, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 13, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 14, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 14, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 15, 1, 4, 2.50;
+EXEC pr_insertardetalle_venta 15, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 16, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 16, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 17, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 17, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 18, 1, 5, 2.50;
+EXEC pr_insertardetalle_venta 18, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 19, 1, 4, 2.50;
+EXEC pr_insertardetalle_venta 19, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 20, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 20, 2, 3, 1.80;
+EXEC pr_insertardetalle_venta 21, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 21, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 22, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 22, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 23, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 23, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 24, 1, 4, 2.50;
+EXEC pr_insertardetalle_venta 24, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 25, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 25, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 26, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 26, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 27, 1, 2, 2.50;
+EXEC pr_insertardetalle_venta 27, 2, 1, 1.80;
+EXEC pr_insertardetalle_venta 28, 1, 3, 2.50;
+EXEC pr_insertardetalle_venta 28, 2, 2, 1.80;
+EXEC pr_insertardetalle_venta 29, 1, 4, 2.50;
+EXEC pr_insertardetalle_venta 29, 2, 2, 1.80;
+
+
+	
